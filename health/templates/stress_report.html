@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+
+
+
+{% block content %}
+    <div class="mt-5">
+        <h3 class="mb-5">Stress Report</h3>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card p-3 mb-4">
+                    <h5 class="text-muted">User</h5>
+                    <h3>{{record.user.get_full_name}}</h3>
+
+                    <div class="mb-2">
+                        <span class="text-muted">Sex: </span>
+                        <span>{{record.user.sex | title}}</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-muted">Age: </span>
+                        <span>{{record.user.age | title}}</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-muted">Location: </span>
+                        <span>{{record.user.location | title}}</span>
+                    </div>
+                
+                </div>
+
+                <div class="card mb-4">
+                    <h5 class="text-muted p-3">Behavioural Resilience Score</h5>
+
+                    <div class="list-group list-group-flush ">
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Socially Connected</span> <span>{{record.social_connected}}</span></div>
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Physically Active</span> <span>{{record.physical_active}}</span></div>
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Time In Nature</span> <span>{{record.time_in_nature}}</span></div>
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Healthy Diet</span> <span>{{record.health_diet}}</span></div>
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Sleep Quality</span> <span>{{record.sleep_quality}}</span></div>
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Daily Phone Use</span> <span>{{record.daily_phone_use}}</span></div>
+                      </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card mb-4">
+                    <h5 class="text-muted p-3">Overall Stress Level: {{record.overall_stress_level}}%</h5>
+
+                    <div class="list-group list-group-flush ">
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Pre-Frontal Cortex</span> <span>{{record.pre_frontal_cortext}}</span></div>
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Hypothalamus</span> <span>{{record.hypothalamus}}</span></div>
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Amygdala</span> <span>{{record.amygdala}}</span></div>
+                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>Hippocampus</span> <span>{{record.hippocampus}}</span></div>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock content %}

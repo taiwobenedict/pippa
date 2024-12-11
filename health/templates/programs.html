@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<div class="accordion mt-5" id="accordionExample">
+
+    {% for module in modules  %}
+    
+        <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapse{{module.id}}" aria-expanded="true" aria-controls="collapse{{module.id}}">
+                <div>{{module.name}}</div>
+                <div class="d-flex justify-content-center"> <span>{{module.total_completed_programs}}</span> / <span>{{module.total_programs}}</span> </div>
+            </button>
+            </h2>
+        </div>
+    
+        <div id="collapse{{module.id}}" class="collapse {% if forloop.counter == 1 %}show{% endif %}" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for program  in module.programs.all  %}
+                        <li class="list-group-item d-flex justify-content-between"> <span>{{program.title}}</span> <span>{% if program.completed %} <i class="fa-solid fa-circle-check"></i>{% else %} <i class="fa-solid fa-lock"></i> {% endif %}</span></li>
+                    {% empty %}
+                    <p>No Program yet!</p>
+                    
+                    {% endfor %}
+                
+                  </ul>
+            </div>
+        </div>
+        </div>
+    
+    {% endfor %}
+
+  </div>
+
+{% endblock content %}
+
