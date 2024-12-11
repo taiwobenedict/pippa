@@ -3,38 +3,65 @@
 
 {% block content %}
 
-<div class="accordion mt-5" id="accordionExample">
+<div class="row mt-5">
+    <div class="col-sm-8">
+        <div class="accordion " id="accordionExample">
 
-    {% for module in modules  %}
-    
-        <div class="card">
-        <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-left d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapse{{module.id}}" aria-expanded="true" aria-controls="collapse{{module.id}}">
-                <div>{{module.name}}</div>
-                <div class="d-flex justify-content-center"> <span>{{module.total_completed_programs}}</span> / <span>{{module.total_programs}}</span> </div>
-            </button>
-            </h2>
+            {% for module in modules  %}
+            
+                <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#collapse{{module.id}}" aria-expanded="true" aria-controls="collapse{{module.id}}">
+                        <div>{{module.name}}</div>
+                        <div class="d-flex justify-content-center"> <span>{{module.total_completed_programs}}</span> / <span>{{module.total_programs}}</span> </div>
+                    </button>
+                    </h2>
+                </div>
+            
+                <div id="collapse{{module.id}}" class="collapse {% if forloop.counter == 1 %}show{% endif %}" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for program  in module.programs.all  %}
+                                <li class="list-group-item d-flex justify-content-between"> <span>{{program.title}}</span> <span>{% if program.completed %} <i class="fa-solid fa-circle-check"></i>{% else %} <i class="fa-solid fa-lock"></i> {% endif %}</span></li>
+                            {% empty %}
+                            <p>No Program yet!</p>
+                            
+                            {% endfor %}
+                        
+                          </ul>
+                    </div>
+                </div>
+                </div>
+            
+            {% endfor %}
+        
         </div>
-    
-        <div id="collapse{{module.id}}" class="collapse {% if forloop.counter == 1 %}show{% endif %}" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    {% for program  in module.programs.all  %}
-                        <li class="list-group-item d-flex justify-content-between"> <span>{{program.title}}</span> <span>{% if program.completed %} <i class="fa-solid fa-circle-check"></i>{% else %} <i class="fa-solid fa-lock"></i> {% endif %}</span></li>
-                    {% empty %}
-                    <p>No Program yet!</p>
-                    
-                    {% endfor %}
-                
-                  </ul>
+    </div>
+    <div class="col-sm-4">
+        <div class="card mb-4 p-3">
+            <h5 class="text-muted mb-3">Your Councellor</h5>
+            
+            <div class="rounded rounded-circle border p-3 d-flex justify-content-center align-items-center" style="width: fit-content;">
+                <i class="fa-solid fa-user fa-3x"></i>
             </div>
+            
         </div>
-        </div>
-    
-    {% endfor %}
+        <div class="card mb-4 p-3">
+            <h5 class="text-muted mb-3">Quicklinks </h5>
 
-  </div>
+            <ul class="list-group list-group-flush">
+                <a href="{% url "stress-report" %}" class="list-group-item list-group-item-action">Your Stress Report</a>
+                <a href="" class="list-group-item list-group-item-action">Stressless Orientation Video</a>
+                <a href="" class="list-group-item list-group-item-action">Contact Us</a>
+            
+              </ul>
+            
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock content %}
 
